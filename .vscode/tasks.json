@@ -1,0 +1,453 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build project",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build project via cmd",
+			"type": "shell",
+			"command": "cmd /C \"npm.cmd run build\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build project via system cmd",
+			"type": "shell",
+			"command": "\"C:/Windows/System32/cmd.exe\" /C \"npm.cmd run build\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "TypeScript noEmit check",
+			"type": "shell",
+			"command": "./node_modules/.bin/tsc --noEmit",
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "TypeScript check",
+			"type": "shell",
+			"command": "node ./node_modules/typescript/bin/tsc --noEmit",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Start development server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start development server via npm.cmd",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install dependencies and build production",
+			"type": "shell",
+			"command": "npm install && npm run build",
+			"isBackground": false
+		},
+		{
+			"label": "Install dependencies and build production (PowerShell)",
+			"type": "shell",
+			"command": "npm install; if ($LASTEXITCODE -eq 0) { npm run build }",
+			"isBackground": false
+		},
+		{
+			"label": "Install dependencies and build production (npm cmd)",
+			"type": "shell",
+			"command": "npm.cmd install; if ($LASTEXITCODE -eq 0) { npm.cmd run build }",
+			"isBackground": false
+		},
+		{
+			"label": "Reinstall resolve Tailwind and build",
+			"type": "shell",
+			"command": "npm.cmd install; if ($LASTEXITCODE -eq 0) { node.exe -p \"require.resolve('@tailwindcss/postcss')\"; if ($LASTEXITCODE -eq 0) { npm.cmd run build } }",
+			"isBackground": false
+		},
+		{
+			"label": "Verify Tailwind module resolution",
+			"type": "shell",
+			"command": "node.exe -p 'require.resolve(\"@tailwindcss/postcss\")'",
+			"isBackground": false
+		},
+		{
+			"label": "Resolve Tailwind postcss module",
+			"type": "shell",
+			"command": "node.exe -p \"require.resolve(String.fromCharCode(64,116,97,105,108,119,105,110,100,99,115,115,47,112,111,115,116,99,115,115))\"",
+			"isBackground": false
+		},
+		{
+			"label": "Verify package resolution",
+			"type": "shell",
+			"command": "node.exe -p `\"require.resolve('@tailwindcss/postcss')`\"",
+			"isBackground": false
+		},
+		{
+			"label": "Verify Tailwind package resolution",
+			"type": "shell",
+			"command": "cmd.exe /c 'node -p \"require.resolve(''@tailwindcss/postcss'')\"'",
+			"isBackground": false
+		},
+		{
+			"label": "Confirm installed Tailwind module",
+			"type": "shell",
+			"command": "node.exe -p ('require.resolve(' + [char]39 + '@tailwindcss/postcss' + [char]39 + ')')",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect port 3000 listener",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano -p tcp | findstr LISTENING | findstr :3000"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Check local runtime access",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-e",
+				"console.log(JSON.stringify({platform:process.platform,cwd:process.cwd(),version:process.version}))"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Identify port 3000 process",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Read listener PID",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"LocalAddress,LocalPort,OwningProcess"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Verify listener workspace",
+			"type": "shell",
+			"command": "Get-CimInstance",
+			"args": [
+				"Win32_Process",
+				"-Filter",
+				"ProcessId = 7892",
+				"|",
+				"Select-Object",
+				"ProcessId,ExecutablePath,CommandLine"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Confirm server command",
+			"type": "shell",
+			"command": "Get-CimInstance",
+			"args": [
+				"Win32_Process",
+				"-Filter",
+				"ProcessId = 7892",
+				"|",
+				"Format-List",
+				"ProcessId,ExecutablePath,CommandLine"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Stop verified listener PID",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"7892"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Start BloomCart Next.js dev server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start BloomCart Next.js dev server (cmd shim)",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify BloomCart HTTP response",
+			"type": "shell",
+			"command": "Invoke-WebRequest",
+			"args": [
+				"-Uri",
+				"http://localhost:3000",
+				"-Method",
+				"Get"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Identify current dev process",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"ForEach-Object",
+				"{",
+				"$p = Get-CimInstance Win32_Process -Filter \"ProcessId = $($_.OwningProcess)\"; [pscustomobject]@{PID=$p.ProcessId; ParentPID=$p.ParentProcessId; CommandLine=$p.CommandLine; ExecutablePath=$p.ExecutablePath; Started=(Get-Process -Id $p.ProcessId).StartTime} }",
+				"|",
+				"Format-List"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Read current listener PID",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"LocalAddress,LocalPort,OwningProcess"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Read current server details",
+			"type": "shell",
+			"command": "Get-CimInstance",
+			"args": [
+				"Win32_Process",
+				"-Filter",
+				"ProcessId = 17172",
+				"|",
+				"Format-List",
+				"ProcessId,ParentProcessId,ExecutablePath,CommandLine,CreationDate"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Check dev task working directory",
+			"type": "shell",
+			"command": "Get-Location",
+			"args": [],
+			"isBackground": false
+		},
+		{
+			"label": "Check Tailwind package files",
+			"type": "shell",
+			"command": "Test-Path",
+			"args": [
+				"node_modules\\@tailwindcss\\postcss\\dist\\index.js"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Resolve Tailwind package",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-p",
+				"require.resolve('@tailwindcss/postcss')"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Resolve Tailwind package quoted",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-p",
+				"\"require.resolve('@tailwindcss/postcss')\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "List Tailwind dependency",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"ls",
+				"@tailwindcss/postcss"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Resolve Tailwind package safely",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-p",
+				"'require.resolve(\"@tailwindcss/postcss\")'"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Resolve Tailwind package exact",
+			"type": "shell",
+			"command": "node --% -p",
+			"args": [
+				"\"require.resolve('@tailwindcss/postcss')\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Resolve Tailwind package exact2",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"--%",
+				"-p",
+				"\"require.resolve('@tailwindcss/postcss')\""
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Check stale dev errors from server",
+			"type": "shell",
+			"command": "Get-Process",
+			"args": [
+				"-Id",
+				"17172",
+				"|",
+				"Select-Object",
+				"Id,ProcessName,StartTime"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Verify dev process parent",
+			"type": "shell",
+			"command": "Get-CimInstance",
+			"args": [
+				"Win32_Process",
+				"-Filter",
+				"ProcessId = 6932",
+				"|",
+				"Format-List",
+				"ProcessId,ParentProcessId,ExecutablePath,CommandLine,CreationDate"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Stop matching dev server PIDs",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"17172,6932"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Remove generated Next cache",
+			"type": "shell",
+			"command": "Remove-Item",
+			"args": [
+				"-LiteralPath",
+				".next",
+				"-Recurse",
+				"-Force"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Test BloomCart product response",
+			"type": "shell",
+			"command": "Invoke-WebRequest",
+			"args": [
+				"-Uri",
+				"http://localhost:3000/products/8",
+				"-Method",
+				"Get"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Test BloomCart home response",
+			"type": "shell",
+			"command": "Invoke-WebRequest",
+			"args": [
+				"-Uri",
+				"http://localhost:3000",
+				"-Method",
+				"Get"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Confirm server after restart",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"LocalAddress,LocalPort,OwningProcess"
+			],
+			"isBackground": false
+		}
+	]
+}
